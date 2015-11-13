@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os, sys
 from PIL import Image
-
+#convert image to thumb
 for infile in sys.argv[1:]:
      outfile=os.path.splitext(infile)[0] + ".thumbnail"
      if infile !=outfile:
