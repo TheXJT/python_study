@@ -10,9 +10,9 @@ def tcplink(sock, addr):
     print('Accept new connection from %s:%s...' %addr)
     sock.send(b'Welcome!')
     while True:
-        data=sock.recv(1024)
+        data=sock.recv(1024).decode('utf-8')
         time.sleep(1)
-        if not data or data.decode('utf-8')=='exit':
+        if not data or data=='exit':
             break
         sock.send(('Hello, %s!' % data).encode('utf-8'))
     sock.close()
