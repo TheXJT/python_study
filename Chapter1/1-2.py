@@ -13,12 +13,26 @@ class Vector:
 		return hypot(self.x,self.y)
 
 	def __bool__(self):
-		return bool(abs(self))
+		return bool(self.x or self.y)
 
 	def __add__(self,other):
 		x=self.x+other.x
 		y=self.y+other.y
 		return Vector(x,y)
 
+	def __sub__(self,other):
+		x=self.x-other.x
+		y=self.y-other.y
+		return Vector(x,y)
+
 	def __mul__(self,scalar):
 		return Vector(self.x*scalar,self.y*scalar)
+
+if __name__=="__main__":
+	v1=Vector(0,1)
+	v2=Vector(3,4)
+	v3=v1-v2
+	v4=v1*5
+	print(v3)
+	s='absafasdfasdf'
+	print(s.count('a'))
