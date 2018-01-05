@@ -1,4 +1,13 @@
-ranks=[str(n) for n in range(2,11)] + list('JQKA')
-suits='spades diamonds clubs hearts'.split()
+# print(divmod(20,8))
+t=(20,8)
+print(divmod(*t))
+quotient,remainder=divmod(*t)
+print(quotient,remainder)
 
-print(ranks.index('A'))
+import os
+path,filename=os.path.split('~/python_study/test.py')
+print(filename)
+print(path)
+
+a,b,*rest=range(3)
+print(type(a),type(b),type(rest))
