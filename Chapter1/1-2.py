@@ -34,5 +34,3 @@ if __name__=="__main__":
 	v3=v1-v2
 	v4=v1*5
 	print(v3)
-	s='absafasdfasdf'
-	print(s.count('a'))
