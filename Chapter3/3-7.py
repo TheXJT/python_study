@@ -1,4 +1,5 @@
 class StrKeyDict0(dict):
+	
 
 	def __missing__(self,key):
 		if isinstance(key,str):
