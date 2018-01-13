@@ -11,5 +11,6 @@ class StrKeyDict0(dict):
 			return self[key]
 		except KeyError:
 			return default
+			
 	def __contains__(self,key):
 		return key in self.keys() or str(key) in self.keys()
