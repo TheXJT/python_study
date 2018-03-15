@@ -2,6 +2,7 @@ from array import array
 import math
 
 class Vector2d:
+	# __slots__=('__x','__y')
 	typecode='d'
 
 	def __init__(self,x,y):
@@ -21,6 +22,7 @@ class Vector2d:
 
 	def __repr__(self):
 		class_name=type(self).__name__
+		# class_name=self.__class__.__name__
 		return '{}({!r},{!r})'.format(class_name,*self)
 
 	def __str__(self):
@@ -64,15 +66,12 @@ class Vector2d:
 		memv=memoryview(octets[1:]).cast(typecode)
 		return cls(*memv)
 
+class ShortVector2d(Vector2d):
+	typecode='f'
 
-
-
-
-v1=Vector2d(3,4)
-v2=Vector2d(3.1,4.2)
-print(hash(v1),'\n',hash(v2))
-# print(set([v1,v2]))
-print(v1.x,v1.y)
-octets=bytes(v1)
-print(v2.frombytes(octets))
-print(v2,v1)
+sv=ShortVector2d(1/11,1/27)
+print(sv)
+print(len(bytes(sv)))
+# help(ShortVector2d)
+print(repr(sv))
+help(sv)
