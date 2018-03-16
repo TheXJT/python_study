@@ -59,6 +59,20 @@ class Vector:
         msg='{.__name__!r} object has no attribute {!r}'
         raise AttributeError(msg.format(cls,name))
 
+    def __setattr__(self,name,value):
+        cls=type(self)
+        if len(name)==1:
+            if name in cls.shortcut_names:
+                error='readonly attribute {attr_name!r}'
+            elif name.islower():
+                error="can't set attributes 'a' to 'z' in {cls_name!r}"
+            else:
+                error=''
+            if error:
+                msg=error.format(cls_name=cls.__name__,attr_name=name)
+                raise AttributeError(msg)
+        super().__setattr__(name,value)
+
     @classmethod
     def frombytes(cls, octets):
         typecode = chr(octets[0])
@@ -66,9 +80,11 @@ class Vector:
         return cls(memv)  # <7>
 # END VECTOR_V1
 
-v1=Vector(range(7))
-print(v1)
-s=v1[-1:]
-print(type(s))
-print(s)
-s2=v1[1,2]
+v1=Vector(range(5))
+print(repr(v1))
+print(v1.x)
+print(v1.y,v1.z,v1.t)
+v1.x=10
+print(v1.x)
+print(repr(v1))
+# print(help(v1))
