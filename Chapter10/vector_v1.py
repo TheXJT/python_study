@@ -1,6 +1,8 @@
 from array import array
 import reprlib
 import math
+import functools
+import operator
 
 class Vector:
 	# __slots__=('__x','__y')
@@ -28,7 +30,19 @@ class Vector:
 			bytes(self._components))
 
 	def __eq__(self,other):
-		return tuple(self)==tuple(other)
+		# return tuple(self)==tuple(other)
+		# if len(self)!=len(other):
+		# 	return False
+		# for a,b in zip(self,other):
+		# 	if a!=b:
+		# 		return False
+		# return True
+		return len(self)==len(other) and all(a==b for a,b in zip(self,other))
+
+	def __hash__(self):
+		# hashes=(hash(x) for x in self._components)
+		hashes=map(hash,self._components)
+		return functools.reduce(operator.xor,hashes,0)
 
 	def __abs__(self):
 		return math.sqrt(sum(x*x for x in self))
@@ -49,8 +63,13 @@ class Vector:
 		return cls(memv)
 
 
-s=Vector([3,4,5])
-print(len(s))
-print(s[0],s[1])
-s1=Vector(range(7))
-print(s1[1:4])
+s=Vector(range(10000))
+print(hash(s))
+print(s==range(10000))
+# print(hash(Vector((1,2,3))))
+s=zip(range(3),'ABC',[0.0,1.1,2.2,3.3])
+# print(s)
+print(list(s))
+from itertools import zip_longest
+s1=zip_longest(range(3),'ABC',[0.0,1.1,2.2,3.3],fillvalue=-1)
+print(list(s1))
