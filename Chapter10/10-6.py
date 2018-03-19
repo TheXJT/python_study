@@ -3,6 +3,9 @@ from array import array
 import reprlib
 import math
 import numbers
+import functools
+import operator
+import itertools
 
 
 class Vector:
