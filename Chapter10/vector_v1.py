@@ -39,6 +39,34 @@ class Vector:
 		# return True
 		return len(self)==len(other) and all(a==b for a,b in zip(self,other))
 
+	def __add__(self,other):
+		try:
+			pairs=itertools.zip_longest(self,other,fillvalue=0.0)
+			return Vector(a+b for a,b in pairs)
+		except TypeError:
+			return NotImplemented
+
+	def __radd__(self,other):
+		return self+other
+
+	def __mul__(self,scalar):
+		if isinstance(scalar,numbers.Real):
+			return Vector(n*scalar for n in self)
+		else:
+			return NotImplemented
+
+	def __rmul__(self,scalar):
+		return self*scalar
+
+	def __matmul__(self,other):
+		try:
+			return sum(a*b for a,b in zip(self,other))
+		except TypeError:
+			return NotImplemented
+
+	def __rmatmul__(self,other):
+		return self @ other
+
 	def __hash__(self):
 		# hashes=(hash(x) for x in self._components)
 		hashes=map(hash,self._components)
@@ -105,17 +133,6 @@ class Vector:
 		return cls(memv)
 
 
-s=Vector([-1,-1,-1,-1])
-print(format(s,'.5fh'))
-
-my_list=[[1,2,3],[40,50,60],[9,8,7]]
-import functools
-s=functools.reduce(lambda a,b:a+b[1],my_list,0)
-
-print(s)
-import numpy as np
-my_array=np.array(my_list)
-print(np.sum(my_array[:,1]))
-print(functools.reduce(operator.add,[sub[1] for sub in my_list],0))
-s=sum(sub[1] for sub in my_list)
-print(s)
+v1=Vector([1,2,3])
+v2=Vector([5,6,7])
+print(v1 @ [5,6,7])
