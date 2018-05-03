@@ -37,7 +37,10 @@ class Vector:
 		# 	if a!=b:
 		# 		return False
 		# return True
-		return len(self)==len(other) and all(a==b for a,b in zip(self,other))
+		if isinstance(other,Vector):
+			return len(self)==len(other) and all(a==b for a,b in zip(self,other))
+		else:
+			return NotImplemented
 
 	def __add__(self,other):
 		try:
@@ -134,5 +137,12 @@ class Vector:
 
 
 v1=Vector([1,2,3])
-v2=Vector([5,6,7])
-print(v1 @ [5,6,7])
+v1_alias=v1
+print(id(v1),id(v1_alias))
+v1+=Vector([4,5,6])
+print(id(v1))
+print(v1_alias)
+# print(id(v1_alias))
+v1*=11
+print(v1)
+print(id(v1))
