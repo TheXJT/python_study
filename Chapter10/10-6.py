@@ -87,7 +87,7 @@ v1=Vector(range(5))
 print(repr(v1))
 print(v1.x)
 print(v1.y,v1.z,v1.t)
-v1.x=10
+# v1.x=10
 print(v1.x)
 print(repr(v1))
 # print(help(v1))
