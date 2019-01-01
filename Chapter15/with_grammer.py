@@ -30,3 +30,4 @@ print(monster)
 print(manager)
 manager.__exit__(None,None,None)
 print(monster)
+667
