@@ -9,10 +9,14 @@ def averager():
 		count+=1
 		average=total/count
 
+from inspect import getgeneratorstate
+
 coro_avg=averager()
+print(getgeneratorstate(coro_avg))
 next(coro_avg)
+print(getgeneratorstate(coro_avg))
+
 coro_avg.send(10)
 coro_avg.send(30)
 coro_avg.send(5)
-from inspect import getgeneratorstate
 print(getgeneratorstate(coro_avg))
