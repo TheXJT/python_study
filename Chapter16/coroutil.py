@@ -23,6 +23,9 @@ def averager():
 coro_avg=averager()
 from inspect import getgeneratorstate
 print(getgeneratorstate(coro_avg))
-coro_avg.send(10)
-coro_avg.send(30)
-coro_avg.send(5)
+coro_avg.send(40)
+coro_avg.send(50)
+try:
+	coro_avg.send('spam')
+except:
+	coro_avg.send(60)
